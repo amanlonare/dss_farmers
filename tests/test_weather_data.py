@@ -1,9 +1,22 @@
-import sys
-sys.path.append('.')
-
 from dss_farmers.models.weather_data import WeatherData
 
-def test_weather_data():
+def test_weather_data_instantiation():
+    weather = WeatherData()
+    assert isinstance(weather, WeatherData)
+    print("WeatherData instantiation test passed!")
+
+def test_weather_data_defaults():
+    weather = WeatherData()
+    assert weather.temperature == 0.0
+    assert weather.humidity == 0.0
+    assert weather.precipitation == 0.0
+    assert weather.wind_speed == 0.0
+    assert weather.pressure == 0.0
+    assert weather.uv_index == 0.0
+    assert weather.forecast_7day == []
+    print("WeatherData default values test passed!")
+
+def test_weather_data_custom_values():
     sample_forecast = [
         {"day": 1, "temp": 25.5, "condition": "Sunny"},
         {"day": 2, "temp": 24.0, "condition": "Partly cloudy"}
@@ -27,9 +40,10 @@ def test_weather_data():
     assert weather.uv_index == 7.0
     assert len(weather.forecast_7day) == 2
     assert weather.forecast_7day[0]["temp"] == 25.5
-
-    print("Verification passed!")
-    sys.exit(0)
+    print("WeatherData custom values test passed!")
 
 if __name__ == "__main__":
-    test_weather_data()
+    test_weather_data_instantiation()
+    test_weather_data_defaults()
+    test_weather_data_custom_values()
+    print("All tests passed!")
