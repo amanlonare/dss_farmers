@@ -3,6 +3,7 @@ from typing import Optional
 from .soil_conditions import SoilConditions
 from .crop_details import CropDetails
 from .fertilizers import Fertilizers
+from .weather_data import WeatherData
 
 
 @dataclass
@@ -14,5 +15,6 @@ class FarmerInput:
     crop_details: CropDetails = field(default_factory=CropDetails)
     irrigation_method: Optional[str] = None
     fertilizer_pesticide: Fertilizers = field(default_factory=Fertilizers)
+    weather_data: WeatherData = field(default_factory=WeatherData)
     query: str = ""
     comments: Optional[str] = None
