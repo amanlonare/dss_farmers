@@ -22,13 +22,6 @@ MCP_SERVERS = {
 
 # LLM Configuration
 LLM_CONFIG = {
-    # "model_name": "Xianjun/PLLaMa-7b-base",
-    # "generation_params": {
-    #     "max_new_tokens": 1024,
-    #     "temperature": 0.7,
-    #     "do_sample": True,
-    #     "top_p": 0.9,
-    # },
     "model_name": "mrSoul7766/AgriQBot",
     "generation_params": {
         "max_length": 256,  # Use max_length for Seq2Seq models
