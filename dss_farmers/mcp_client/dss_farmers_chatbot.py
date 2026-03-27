@@ -15,6 +15,7 @@ from dss_farmers.models.soil_conditions import SoilConditions
 from dss_farmers.models.crop_details import CropDetails
 from dss_farmers.models.fertilizers import Fertilizers
 from dss_farmers.models.farmer_input import FarmerInput
+from dss_farmers.models.demographic_info import DemographicInfo
 from dss_farmers.prompts.prompt_template_dss import FarmerPromptTemplates
 from dss_farmers.config.config import MCP_SERVERS, LLM_CONFIG
 
@@ -112,7 +113,13 @@ def get_farmer_input() -> FarmerInput:
     logger.info("Getting farmer input")
     print("\n===== DSS Farmers Assistant =====\n")
 
-    location = input("Enter your location (city/village name): ")
+    name = input("Enter farmer's name: ")
+    location = input("Enter farmer's location: ")
+
+    # Collect demographic information
+    age = int(input("Enter farmer's age: "))
+    gender = input("Enter farmer's gender: ")
+    education_level = input("Enter farmer's education level: ")
 
     # Get crop details
     current_crop = input("What crop are you currently growing? (press Enter if none): ")
@@ -147,7 +154,13 @@ def get_farmer_input() -> FarmerInput:
 
     # Create and return the farmer input object
     return FarmerInput(
+        name=name,
         location=location,
+        demographic_info=DemographicInfo(
+            age=age,
+            gender=gender,
+            education_level=education_level
+        ),
         soil_conditions=SoilConditions(npk=npk, ph_level=ph_level, soil_type=soil_type),
         crop_details=CropDetails(
             current_crop=current_crop,
