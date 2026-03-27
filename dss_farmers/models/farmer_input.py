@@ -3,6 +3,7 @@ from typing import Optional
 from .soil_conditions import SoilConditions
 from .crop_details import CropDetails
 from .fertilizers import Fertilizers
+from .demographic_model import DemographicInfo
 
 
 @dataclass
@@ -16,3 +17,4 @@ class FarmerInput:
     fertilizer_pesticide: Fertilizers = field(default_factory=Fertilizers)
     query: str = ""
     comments: Optional[str] = None
+    demographic_info: DemographicInfo = field(default_factory=DemographicInfo)  # Added instance of DemographicInfo
